@@ -1,0 +1,11 @@
+*.class
+*/target
+*/build
+*/classes
+*/target/*
+*/build/*
+*/classes/*
+*Thumbs.db
+*.jar
+*.war
+*.ear

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="PerfilWS" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PerfilWSSoapBinding" type="wsdl" bindingName="{lojix.zetex.com.br}PerfilWSSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/lojix-ejb-0.0.1-SNAPSHOT/PerfilWS/PerfilWSPort?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/lojix-ejb-0.0.1-SNAPSHOT/PerfilWS/PerfilWSPort?wsdl"><con:part><con:url>http://localhost:8080/lojix-ejb-0.0.1-SNAPSHOT/PerfilWS/PerfilWSPort?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PerfilWS" targetNamespace="lojix.zetex.com.br" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="lojix.zetex.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="lojix.zetex.com.br" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="adicionaPerfil" type="tns:adicionaPerfil"/>
+      <xs:element name="adicionaPerfilResponse" type="tns:adicionaPerfilResponse"/>
+      <xs:element name="baseEntity" type="tns:baseEntityImpl"/>
+      <xs:element name="contato" type="tns:contato"/>
+      <xs:element name="endereco" type="tns:endereco"/>
+      <xs:element name="idioma" type="tns:idiomaEnum"/>
+      <xs:element name="perfil" type="tns:perfil"/>
+      <xs:element name="permissao" type="tns:permissaoEnum"/>
+      <xs:element name="pessoa" type="tns:pessoa"/>
+      <xs:element name="prioridade" type="tns:prioridadeEnum"/>
+      <xs:element name="tipoContato" type="tns:tipoContato"/>
+      <xs:element name="tipoEndereco" type="tns:tipoEnderecoEnum"/>
+      <xs:element name="tipoLogradouro" type="tns:tipoLogradouroEnum"/>
+      <xs:element name="tipoPessoa" type="tns:tipoPessoaEnum"/>
+      <xs:element name="uf" type="tns:ufEnum"/>
+      <xs:element name="usuario" type="tns:usuario"/>
+      <xs:complexType name="adicionaPerfil">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:perfil"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="perfil">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntityImpl">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="listUsuarios" nillable="true" type="tns:usuario"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element minOccurs="0" name="permissao" type="tns:permissaoEnum"/>
+              <xs:element minOccurs="0" name="prioridade" type="tns:prioridadeEnum"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="baseEntityImpl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataAlteracao" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataCriacao" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="uiId" type="xs:long"/>
+          <xs:element minOccurs="0" name="usuarioCorrente" type="xs:string"/>
+          <xs:element minOccurs="0" name="versao" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="usuario">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntityImpl">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="codigoAtivacao" type="xs:string"/>
+              <xs:element minOccurs="0" name="dataAtivacao" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="email" type="xs:string"/>
+              <xs:element minOccurs="0" name="idioma" type="tns:idiomaEnum"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element minOccurs="0" ref="tns:perfil"/>
+              <xs:element minOccurs="0" ref="tns:pessoa"/>
+              <xs:element minOccurs="0" name="senha" type="xs:string"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="ultimoAcesso" type="xs:dateTime"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="pessoa">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntityImpl">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="contatos" nillable="true" type="tns:contato"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="enderecos" nillable="true" type="tns:endereco"/>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" name="informacao" type="xs:string"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element minOccurs="0" name="tipo" type="tns:tipoPessoaEnum"/>
+              <xs:element minOccurs="0" ref="tns:usuario"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="contato">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntityImpl">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" ref="tns:pessoa"/>
+              <xs:element minOccurs="0" name="tipo" type="tns:tipoContato"/>
+              <xs:element minOccurs="0" name="valor" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="tipoContato">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntityImpl">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element name="padrao" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="parttenValidacao" type="xs:string"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="tipo" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="endereco">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntityImpl">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="bairro" type="xs:string"/>
+              <xs:element minOccurs="0" name="cep" type="xs:string"/>
+              <xs:element minOccurs="0" name="cidade" type="xs:string"/>
+              <xs:element minOccurs="0" name="complemento" type="xs:string"/>
+              <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" name="logradoudo" type="xs:string"/>
+              <xs:element minOccurs="0" name="numero" type="xs:int"/>
+              <xs:element minOccurs="0" name="padrao" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="pais" type="xs:string"/>
+              <xs:element minOccurs="0" ref="tns:pessoa"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="tipoEndereco" type="tns:tipoEnderecoEnum"/>
+              <xs:element minOccurs="0" name="tipoLogradouro" type="tns:tipoLogradouroEnum"/>
+              <xs:element minOccurs="0" name="uf" type="tns:ufEnum"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="adicionaPerfilResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="idiomaEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PT_BR"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="tipoEnderecoEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="RESIDENCIAL"/>
+          <xs:enumeration value="COMERCIAL"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="tipoLogradouroEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="AV"/>
+          <xs:enumeration value="NENHUM"/>
+          <xs:enumeration value="RUA"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ufEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="MG"/>
+          <xs:enumeration value="NENHUM"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="tipoPessoaEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="FIS"/>
+          <xs:enumeration value="JUR"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="permissaoEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ADMIN"/>
+          <xs:enumeration value="DENEID"/>
+          <xs:enumeration value="DEVELOPER"/>
+          <xs:enumeration value="EDITOR"/>
+          <xs:enumeration value="GUEST"/>
+          <xs:enumeration value="MANAGER"/>
+          <xs:enumeration value="USER"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="prioridadeEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ALTA"/>
+          <xs:enumeration value="BAIXO"/>
+          <xs:enumeration value="MEDIA"/>
+          <xs:enumeration value="PADRAO"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="SOAPException" type="tns:SOAPException"/>
+      <xs:complexType name="SOAPException">
+        <xs:sequence/>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="adicionaPerfil">
+    <wsdl:part element="tns:adicionaPerfil" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SOAPException">
+    <wsdl:part element="tns:SOAPException" name="SOAPException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="adicionaPerfilResponse">
+    <wsdl:part element="tns:adicionaPerfilResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PerfilWS">
+    <wsdl:operation name="adicionaPerfil">
+      <wsdl:input message="tns:adicionaPerfil" name="adicionaPerfil"></wsdl:input>
+      <wsdl:output message="tns:adicionaPerfilResponse" name="adicionaPerfilResponse"></wsdl:output>
+      <wsdl:fault message="tns:SOAPException" name="SOAPException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PerfilWSSoapBinding" type="tns:PerfilWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="adicionaPerfil">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="adicionaPerfil">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="adicionaPerfilResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault name="SOAPException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PerfilWS">
+    <wsdl:port binding="tns:PerfilWSSoapBinding" name="PerfilWSPort">
+      <soap:address location="http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/PerfilWS/PerfilWSPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/PerfilWS/PerfilWSPort</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="adicionaPerfil" bindingOperationName="adicionaPerfil" type="Request-Response" outputName="adicionaPerfilResponse" inputName="adicionaPerfil" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/PerfilWS/PerfilWSPort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:adicionaPerfil>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            <dataAlteracao>?</dataAlteracao>
+            <!--Optional:-->
+            <dataCriacao>?</dataCriacao>
+            <!--Optional:-->
+            <uiId>?</uiId>
+            <!--Optional:-->
+            <usuarioCorrente>?</usuarioCorrente>
+            <!--Optional:-->
+            <versao>?</versao>
+            <!--Optional:-->
+            <descricao>?</descricao>
+            <!--Zero or more repetitions:-->
+            <listUsuarios>
+               <!--Optional:-->
+               <dataAlteracao>?</dataAlteracao>
+               <!--Optional:-->
+               <dataCriacao>?</dataCriacao>
+               <!--Optional:-->
+               <uiId>?</uiId>
+               <!--Optional:-->
+               <usuarioCorrente>?</usuarioCorrente>
+               <!--Optional:-->
+               <versao>?</versao>
+               <!--Optional:-->
+               <codigoAtivacao>?</codigoAtivacao>
+               <!--Optional:-->
+               <dataAtivacao>?</dataAtivacao>
+               <!--Optional:-->
+               <email>?</email>
+               <!--Optional:-->
+               <idioma>?</idioma>
+               <!--Optional:-->
+               <nome>?</nome>
+               <!--Optional:-->
+               <loj:perfil/>
+               <!--Optional:-->
+               <loj:pessoa>
+                  <!--Optional:-->
+                  <dataAlteracao>?</dataAlteracao>
+                  <!--Optional:-->
+                  <dataCriacao>?</dataCriacao>
+                  <!--Optional:-->
+                  <uiId>?</uiId>
+                  <!--Optional:-->
+                  <usuarioCorrente>?</usuarioCorrente>
+                  <!--Optional:-->
+                  <versao>?</versao>
+                  <!--Zero or more repetitions:-->
+                  <contatos>
+                     <!--Optional:-->
+                     <dataAlteracao>?</dataAlteracao>
+                     <!--Optional:-->
+                     <dataCriacao>?</dataCriacao>
+                     <!--Optional:-->
+                     <uiId>?</uiId>
+                     <!--Optional:-->
+                     <usuarioCorrente>?</usuarioCorrente>
+                     <!--Optional:-->
+                     <versao>?</versao>
+                     <!--Optional:-->
+                     <id>?</id>
+                     <!--Optional:-->
+                     <loj:pessoa/>
+                     <!--Optional:-->
+                     <tipo>
+                        <!--Optional:-->
+                        <dataAlteracao>?</dataAlteracao>
+                        <!--Optional:-->
+                        <dataCriacao>?</dataCriacao>
+                        <!--Optional:-->
+                        <uiId>?</uiId>
+                        <!--Optional:-->
+                        <usuarioCorrente>?</usuarioCorrente>
+                        <!--Optional:-->
+                        <versao>?</versao>
+                        <!--Optional:-->
+                        <descricao>?</descricao>
+                        <!--Optional:-->
+                        <id>?</id>
+                        <!--Optional:-->
+                        <nome>?</nome>
+                        <padrao>?</padrao>
+                        <!--Optional:-->
+                        <parttenValidacao>?</parttenValidacao>
+                        <!--Optional:-->
+                        <status>?</status>
+                        <!--Optional:-->
+                        <tipo>?</tipo>
+                     </tipo>
+                     <!--Optional:-->
+                     <valor>?</valor>
+                  </contatos>
+                  <!--Zero or more repetitions:-->
+                  <enderecos>
+                     <!--Optional:-->
+                     <dataAlteracao>?</dataAlteracao>
+                     <!--Optional:-->
+                     <dataCriacao>?</dataCriacao>
+                     <!--Optional:-->
+                     <uiId>?</uiId>
+                     <!--Optional:-->
+                     <usuarioCorrente>?</usuarioCorrente>
+                     <!--Optional:-->
+                     <versao>?</versao>
+                     <!--Optional:-->
+                     <bairro>?</bairro>
+                     <!--Optional:-->
+                     <cep>?</cep>
+                     <!--Optional:-->
+                     <cidade>?</cidade>
+                     <!--Optional:-->
+                     <complemento>?</complemento>
+                     <!--Optional:-->
+                     <descricao>?</descricao>
+                     <!--Optional:-->
+                     <id>?</id>
+                     <!--Optional:-->
+                     <logradoudo>?</logradoudo>
+                     <!--Optional:-->
+                     <numero>?</numero>
+                     <!--Optional:-->
+                     <padrao>?</padrao>
+                     <!--Optional:-->
+                     <pais>?</pais>
+                     <!--Optional:-->
+                     <loj:pessoa/>
+                     <!--Optional:-->
+                     <status>?</status>
+                     <!--Optional:-->
+                     <tipoEndereco>?</tipoEndereco>
+                     <!--Optional:-->
+                     <tipoLogradouro>?</tipoLogradouro>
+                     <!--Optional:-->
+                     <uf>?</uf>
+                  </enderecos>
+                  <!--Optional:-->
+                  <id>?</id>
+                  <!--Optional:-->
+                  <informacao>?</informacao>
+                  <!--Optional:-->
+                  <nome>?</nome>
+                  <!--Optional:-->
+                  <tipo>?</tipo>
+                  <!--Optional:-->
+                  <loj:usuario/>
+               </loj:pessoa>
+               <!--Optional:-->
+               <senha>?</senha>
+               <!--Optional:-->
+               <status>?</status>
+               <!--Optional:-->
+               <ultimoAcesso>?</ultimoAcesso>
+            </listUsuarios>
+            <!--Optional:-->
+            <nome>?</nome>
+            <!--Optional:-->
+            <permissao>?</permissao>
+            <!--Optional:-->
+            <prioridade>?</prioridade>
+            <!--Optional:-->
+            <status>?</status>
+         </arg0>
+      </loj:adicionaPerfil>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="lojix.zetex.com.br/PerfilWS/adicionaPerfil"/></con:call></con:operation></con:interface><con:testSuite name="CrudPerfil"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="adicionaPerfil" searchProperties="true"><con:settings/><con:testStep type="request" name="adicionaPerfilStep"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PerfilWSSoapBinding</con:interface><con:operation>adicionaPerfil</con:operation><con:request name="adicionaPerfilStep"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/PerfilWS/PerfilWSPort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:adicionaPerfil>
+         <arg0>
+            <descricao>Perfil ADMIN</descricao>
+            <nome>ADMIN</nome>
+            <permissao>ADMIN</permissao>
+            <prioridade>ALTA</prioridade>
+            <status>true</status>
+         </arg0>
+      </loj:adicionaPerfil>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="lojix.zetex.com.br/PerfilWS/adicionaPerfil" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

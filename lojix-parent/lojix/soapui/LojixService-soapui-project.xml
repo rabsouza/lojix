@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="LojixService" soapui-version="4.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LojixServiceSoapBinding" type="wsdl" bindingName="{http://lojix.zetex.com.br}LojixServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService?wsdl"><con:part><con:url>http://localhost:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LojixService" targetNamespace="http://lojix.zetex.com.br" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://lojix.zetex.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://model.lojix.zetex.com.br" version="1.0" xmlns:tns="http://model.lojix.zetex.com.br" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="baseEntity" type="tns:baseEntity"/>
+      <xs:element name="contato" type="tns:contato"/>
+      <xs:element name="endereco" type="tns:endereco"/>
+      <xs:element name="idioma" type="tns:idioma"/>
+      <xs:element name="perfil" type="tns:perfil"/>
+      <xs:element name="permissao" type="tns:permissao"/>
+      <xs:element name="pessoa" type="tns:pessoa"/>
+      <xs:element name="prioridade" type="tns:prioridade"/>
+      <xs:element name="tipoContato" type="tns:tipoContato"/>
+      <xs:element name="tipoEndereco" type="tns:tipoEndereco"/>
+      <xs:element name="tipoLogradouro" type="tns:tipoLogradouro"/>
+      <xs:element name="tipoPessoa" type="tns:tipoPessoa"/>
+      <xs:element name="uf" type="tns:uf"/>
+      <xs:element name="usuario" type="tns:usuario"/>
+      <xs:complexType name="usuario">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="codigoAtivacao" type="xs:string"/>
+              <xs:element minOccurs="0" name="dataAtivacao" type="xs:dateTime"/>
+              <xs:element minOccurs="0" name="email" type="xs:string"/>
+              <xs:element minOccurs="0" name="idioma" type="tns:idioma"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element minOccurs="0" ref="tns:perfil"/>
+              <xs:element minOccurs="0" ref="tns:pessoa"/>
+              <xs:element minOccurs="0" name="senha" type="xs:string"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="ultimoAcesso" type="xs:dateTime"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="baseEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataAlteracao" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataCriacao" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="uiId" type="xs:long"/>
+          <xs:element minOccurs="0" name="usuarioCorrente" type="xs:string"/>
+          <xs:element minOccurs="0" name="versao" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="perfil">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element minOccurs="0" name="permissao" type="tns:permissao"/>
+              <xs:element minOccurs="0" name="prioridade" type="tns:prioridade"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="usuarios" nillable="true" type="tns:usuario"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="pessoa">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntity">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="contatos" nillable="true" type="tns:contato"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="enderecos" nillable="true" type="tns:endereco"/>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" name="informacao" type="xs:string"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element minOccurs="0" name="tipo" type="tns:tipoPessoa"/>
+              <xs:element minOccurs="0" ref="tns:usuario"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="contato">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" ref="tns:pessoa"/>
+              <xs:element minOccurs="0" name="tipo" type="tns:tipoContato"/>
+              <xs:element minOccurs="0" name="valor" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="tipoContato">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" name="nome" type="xs:string"/>
+              <xs:element name="padrao" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="parttenValidacao" type="xs:string"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="tipo" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="endereco">
+        <xs:complexContent>
+          <xs:extension base="tns:baseEntity">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="bairro" type="xs:string"/>
+              <xs:element minOccurs="0" name="cep" type="xs:string"/>
+              <xs:element minOccurs="0" name="cidade" type="xs:string"/>
+              <xs:element minOccurs="0" name="complemento" type="xs:string"/>
+              <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+              <xs:element minOccurs="0" name="id" type="xs:int"/>
+              <xs:element minOccurs="0" name="logradoudo" type="xs:string"/>
+              <xs:element minOccurs="0" name="numero" type="xs:int"/>
+              <xs:element minOccurs="0" name="padrao" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="pais" type="xs:string"/>
+              <xs:element minOccurs="0" ref="tns:pessoa"/>
+              <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="tipoEndereco" type="tns:tipoEndereco"/>
+              <xs:element minOccurs="0" name="tipoLogradouro" type="tns:tipoLogradouro"/>
+              <xs:element minOccurs="0" name="uf" type="tns:uf"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="idioma">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PT_BR"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="permissao">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ADMIN"/>
+          <xs:enumeration value="DENEID"/>
+          <xs:enumeration value="DEVELOPER"/>
+          <xs:enumeration value="EDITOR"/>
+          <xs:enumeration value="GUEST"/>
+          <xs:enumeration value="MANAGER"/>
+          <xs:enumeration value="USER"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="prioridade">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ALTA"/>
+          <xs:enumeration value="BAIXO"/>
+          <xs:enumeration value="MEDIA"/>
+          <xs:enumeration value="PADRAO"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="tipoEndereco">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="RESIDENCIAL"/>
+          <xs:enumeration value="COMERCIAL"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="tipoLogradouro">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="AV"/>
+          <xs:enumeration value="NENHUM"/>
+          <xs:enumeration value="RUA"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="uf">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="MG"/>
+          <xs:enumeration value="NENHUM"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="tipoPessoa">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="FIS"/>
+          <xs:enumeration value="JUR"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://lojix.zetex.com.br" xmlns:ns1="http://model.lojix.zetex.com.br" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://model.lojix.zetex.com.br"/>
+      <xs:element name="adicionaPerfil" type="tns:adicionaPerfil"/>
+      <xs:element name="adicionaPerfilResponse" type="tns:adicionaPerfilResponse"/>
+      <xs:element name="adicionaUsuario" type="tns:adicionaUsuario"/>
+      <xs:element name="adicionaUsuarioResponse" type="tns:adicionaUsuarioResponse"/>
+      <xs:element name="recuperaTodosPerfis" type="tns:recuperaTodosPerfis"/>
+      <xs:element name="recuperaTodosPerfisResponse" type="tns:recuperaTodosPerfisResponse"/>
+      <xs:element name="verificarLogin" type="tns:verificarLogin"/>
+      <xs:element name="verificarLoginResponse" type="tns:verificarLoginResponse"/>
+      <xs:complexType name="adicionaUsuario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="ns1:usuario"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="adicionaUsuarioResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="recuperaTodosPerfis">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="recuperaTodosPerfisResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:perfil"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="verificarLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="ns1:usuario"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="verificarLoginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="adicionaPerfil">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="ns1:perfil"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="adicionaPerfilResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SOAPException" type="tns:SOAPException"/>
+      <xs:complexType name="SOAPException">
+        <xs:sequence/>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="recuperaTodosPerfis">
+    <wsdl:part element="tns:recuperaTodosPerfis" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="adicionaUsuario">
+    <wsdl:part element="tns:adicionaUsuario" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="adicionaPerfil">
+    <wsdl:part element="tns:adicionaPerfil" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="adicionaUsuarioResponse">
+    <wsdl:part element="tns:adicionaUsuarioResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recuperaTodosPerfisResponse">
+    <wsdl:part element="tns:recuperaTodosPerfisResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificarLoginResponse">
+    <wsdl:part element="tns:verificarLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="adicionaPerfilResponse">
+    <wsdl:part element="tns:adicionaPerfilResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificarLogin">
+    <wsdl:part element="tns:verificarLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SOAPException">
+    <wsdl:part element="tns:SOAPException" name="SOAPException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LojixServiceType">
+    <wsdl:operation name="adicionaUsuario">
+      <wsdl:input message="tns:adicionaUsuario" name="adicionaUsuario"></wsdl:input>
+      <wsdl:output message="tns:adicionaUsuarioResponse" name="adicionaUsuarioResponse"></wsdl:output>
+      <wsdl:fault message="tns:SOAPException" name="SOAPException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="recuperaTodosPerfis">
+      <wsdl:input message="tns:recuperaTodosPerfis" name="recuperaTodosPerfis"></wsdl:input>
+      <wsdl:output message="tns:recuperaTodosPerfisResponse" name="recuperaTodosPerfisResponse"></wsdl:output>
+      <wsdl:fault message="tns:SOAPException" name="SOAPException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="verificarLogin">
+      <wsdl:input message="tns:verificarLogin" name="verificarLogin"></wsdl:input>
+      <wsdl:output message="tns:verificarLoginResponse" name="verificarLoginResponse"></wsdl:output>
+      <wsdl:fault message="tns:SOAPException" name="SOAPException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="adicionaPerfil">
+      <wsdl:input message="tns:adicionaPerfil" name="adicionaPerfil"></wsdl:input>
+      <wsdl:output message="tns:adicionaPerfilResponse" name="adicionaPerfilResponse"></wsdl:output>
+      <wsdl:fault message="tns:SOAPException" name="SOAPException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LojixServiceSoapBinding" type="tns:LojixServiceType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="adicionaUsuario">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="adicionaUsuario">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="adicionaUsuarioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault name="SOAPException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="recuperaTodosPerfis">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="recuperaTodosPerfis">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="recuperaTodosPerfisResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault name="SOAPException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="verificarLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="verificarLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verificarLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault name="SOAPException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="adicionaPerfil">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="adicionaPerfil">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="adicionaPerfilResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault name="SOAPException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LojixService">
+    <wsdl:port binding="tns:LojixServiceSoapBinding" name="LojixServicePort">
+      <soap:address location="http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="adicionaPerfil" bindingOperationName="adicionaPerfil" type="Request-Response" outputName="adicionaPerfilResponse" inputName="adicionaPerfil" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br" xmlns:mod="http://model.lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:adicionaPerfil>
+        <arg0>
+            <descricao>Perfil ADMIN</descricao>
+            <nome>ADMIN</nome>
+            <permissao>ADMIN</permissao>
+            <prioridade>ALTA</prioridade>
+            <status>true</status>
+         </arg0>
+      </loj:adicionaPerfil>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://lojix.zetex.com.br/LojixServiceType/adicionaPerfil"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="adicionaUsuario" bindingOperationName="adicionaUsuario" type="Request-Response" outputName="adicionaUsuarioResponse" inputName="adicionaUsuario" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br" xmlns:mod="http://model.lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:adicionaUsuario>
+         <arg0>
+         		<dataAtivacao>2013-03-12T00:00:00-03:00</dataAtivacao>
+         		<ultimoAcesso>2013-03-12T00:00:00-03:00</ultimoAcesso>
+         		
+         		<dataCriacao>2013-03-12T00:00:00-03:00</dataCriacao>
+
+            <usuarioCorrente>soapui</usuarioCorrente>
+            <codigoAtivacao>1</codigoAtivacao>
+            <email>rabsouza@gmail.com</email>
+            <idioma>PT_BR</idioma>
+            <nome>rabsouza</nome>
+            <mod:perfil>
+               <descricao>Perfil ADMIN</descricao>
+               <nome>ADMIN</nome>
+               <permissao>ADMIN</permissao>
+               <prioridade>ALTA</prioridade>
+               <status>true</status>
+            </mod:perfil>
+            <mod:pessoa>
+               <usuarioCorrente>soapui</usuarioCorrente>
+               <nome>Rafael Alessandro</nome>
+               <tipo>FIS</tipo>
+            </mod:pessoa>
+            <senha>123456</senha>
+            <status>true</status>
+            <versao>0</versao>
+         </arg0>
+      </loj:adicionaUsuario>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://lojix.zetex.com.br/LojixServiceType/adicionaUsuario"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br" xmlns:mod="http://model.lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:adicionaUsuario>
+      <arg0>
+         <mod:usuario>
+            <dataAlteracao>2013-03-12T00:00:00-03:00</dataAlteracao>
+            <dataCriacao>2013-03-12T00:00:00-03:00</dataCriacao>
+            <uiId>2313451231551</uiId>
+            <usuarioCorrente>soapui</usuarioCorrente>
+            <versao>0</versao>
+            <codigoAtivacao>1</codigoAtivacao>
+            <dataAtivacao>2013-03-12T00:00:00-03:00</dataAtivacao>
+            <email>rabsouza@gmail.com</email>
+            <idioma>PT_BR</idioma>
+            <nome>rabsouza</nome>
+            <mod:perfil>
+               <dataCriacao>2013-03-12T00:00:00-03:00</dataCriacao>
+               <dataAlteracao>2013-03-12T00:00:00-03:00</dataAlteracao>
+               <uiId>1363133654870</uiId>
+               <usuarioCorrente>soapui</usuarioCorrente>
+               <versao>0</versao>
+               <descricao>Perfil ADMIN</descricao>
+               <nome>ADMIN</nome>
+               <permissao>ADMIN</permissao>
+               <prioridade>ALTA</prioridade>
+               <status>true</status>
+            </mod:perfil>
+            <mod:pessoa>
+               <dataAlteracao>2013-03-12T00:00:00-03:00</dataAlteracao>
+               <dataCriacao>2013-03-12T00:00:00-03:00</dataCriacao>
+               <uiId>123145413</uiId>
+               <usuarioCorrente>soapui</usuarioCorrente>
+               <versao>0</versao>
+               <id>1</id>
+               <informacao>sadas</informacao>
+               <nome>Rafael Batista</nome>
+               <tipo>FIS</tipo>
+            </mod:pessoa>
+            <senha>12323</senha>
+            <status>true</status>
+            <ultimoAcesso>2013-03-12T00:00:00-03:00</ultimoAcesso>
+         </mod:usuario>
+         </arg0>
+      </loj:adicionaUsuario>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://lojix.zetex.com.br/LojixServiceType/adicionaUsuario"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="verificarLogin" bindingOperationName="verificarLogin" type="Request-Response" outputName="verificarLoginResponse" inputName="verificarLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br" xmlns:mod="http://model.lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:verificarLogin>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            <dataAlteracao>?</dataAlteracao>
+            <!--Optional:-->
+            <dataCriacao>?</dataCriacao>
+            <!--Optional:-->
+            <uiId>?</uiId>
+            <!--Optional:-->
+            <usuarioCorrente>?</usuarioCorrente>
+            <!--Optional:-->
+            <versao>?</versao>
+            <!--Optional:-->
+            <codigoAtivacao>?</codigoAtivacao>
+            <!--Optional:-->
+            <dataAtivacao>?</dataAtivacao>
+            <!--Optional:-->
+            <email>?</email>
+            <!--Optional:-->
+            <idioma>?</idioma>
+            <!--Optional:-->
+            <nome>?</nome>
+            <!--Optional:-->
+            <mod:perfil>
+               <!--Optional:-->
+               <dataAlteracao>?</dataAlteracao>
+               <!--Optional:-->
+               <dataCriacao>?</dataCriacao>
+               <!--Optional:-->
+               <uiId>?</uiId>
+               <!--Optional:-->
+               <usuarioCorrente>?</usuarioCorrente>
+               <!--Optional:-->
+               <versao>?</versao>
+               <!--Optional:-->
+               <descricao>?</descricao>
+               <!--Optional:-->
+               <nome>?</nome>
+               <!--Optional:-->
+               <permissao>?</permissao>
+               <!--Optional:-->
+               <prioridade>?</prioridade>
+               <!--Optional:-->
+               <status>?</status>
+               <!--Zero or more repetitions:-->
+               <usuarios/>
+            </mod:perfil>
+            <!--Optional:-->
+            <mod:pessoa>
+               <!--Optional:-->
+               <dataAlteracao>?</dataAlteracao>
+               <!--Optional:-->
+               <dataCriacao>?</dataCriacao>
+               <!--Optional:-->
+               <uiId>?</uiId>
+               <!--Optional:-->
+               <usuarioCorrente>?</usuarioCorrente>
+               <!--Optional:-->
+               <versao>?</versao>
+               <!--Zero or more repetitions:-->
+               <contatos>
+                  <!--Optional:-->
+                  <dataAlteracao>?</dataAlteracao>
+                  <!--Optional:-->
+                  <dataCriacao>?</dataCriacao>
+                  <!--Optional:-->
+                  <uiId>?</uiId>
+                  <!--Optional:-->
+                  <usuarioCorrente>?</usuarioCorrente>
+                  <!--Optional:-->
+                  <versao>?</versao>
+                  <!--Optional:-->
+                  <id>?</id>
+                  <!--Optional:-->
+                  <mod:pessoa/>
+                  <!--Optional:-->
+                  <tipo>
+                     <!--Optional:-->
+                     <dataAlteracao>?</dataAlteracao>
+                     <!--Optional:-->
+                     <dataCriacao>?</dataCriacao>
+                     <!--Optional:-->
+                     <uiId>?</uiId>
+                     <!--Optional:-->
+                     <usuarioCorrente>?</usuarioCorrente>
+                     <!--Optional:-->
+                     <versao>?</versao>
+                     <!--Optional:-->
+                     <descricao>?</descricao>
+                     <!--Optional:-->
+                     <id>?</id>
+                     <!--Optional:-->
+                     <nome>?</nome>
+                     <padrao>?</padrao>
+                     <!--Optional:-->
+                     <parttenValidacao>?</parttenValidacao>
+                     <!--Optional:-->
+                     <status>?</status>
+                     <!--Optional:-->
+                     <tipo>?</tipo>
+                  </tipo>
+                  <!--Optional:-->
+                  <valor>?</valor>
+               </contatos>
+               <!--Zero or more repetitions:-->
+               <enderecos>
+                  <!--Optional:-->
+                  <dataAlteracao>?</dataAlteracao>
+                  <!--Optional:-->
+                  <dataCriacao>?</dataCriacao>
+                  <!--Optional:-->
+                  <uiId>?</uiId>
+                  <!--Optional:-->
+                  <usuarioCorrente>?</usuarioCorrente>
+                  <!--Optional:-->
+                  <versao>?</versao>
+                  <!--Optional:-->
+                  <bairro>?</bairro>
+                  <!--Optional:-->
+                  <cep>?</cep>
+                  <!--Optional:-->
+                  <cidade>?</cidade>
+                  <!--Optional:-->
+                  <complemento>?</complemento>
+                  <!--Optional:-->
+                  <descricao>?</descricao>
+                  <!--Optional:-->
+                  <id>?</id>
+                  <!--Optional:-->
+                  <logradoudo>?</logradoudo>
+                  <!--Optional:-->
+                  <numero>?</numero>
+                  <!--Optional:-->
+                  <padrao>?</padrao>
+                  <!--Optional:-->
+                  <pais>?</pais>
+                  <!--Optional:-->
+                  <mod:pessoa/>
+                  <!--Optional:-->
+                  <status>?</status>
+                  <!--Optional:-->
+                  <tipoEndereco>?</tipoEndereco>
+                  <!--Optional:-->
+                  <tipoLogradouro>?</tipoLogradouro>
+                  <!--Optional:-->
+                  <uf>?</uf>
+               </enderecos>
+               <!--Optional:-->
+               <id>?</id>
+               <!--Optional:-->
+               <informacao>?</informacao>
+               <!--Optional:-->
+               <nome>?</nome>
+               <!--Optional:-->
+               <tipo>?</tipo>
+               <!--Optional:-->
+               <mod:usuario/>
+            </mod:pessoa>
+            <!--Optional:-->
+            <senha>?</senha>
+            <!--Optional:-->
+            <status>?</status>
+            <!--Optional:-->
+            <ultimoAcesso>?</ultimoAcesso>
+         </arg0>
+      </loj:verificarLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://lojix.zetex.com.br/LojixServiceType/verificarLogin"/></con:call></con:operation><con:operation isOneWay="false" action="" name="recuperaTodosPerfis" bindingOperationName="recuperaTodosPerfis" type="Request-Response" outputName="recuperaTodosPerfisResponse" inputName="recuperaTodosPerfis" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:recuperaTodosPerfis/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://lojix.zetex.com.br/LojixServiceType/recuperaTodosPerfis"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="VerificaLoginTestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="UsuarioLogadoComSucesso" searchProperties="true"><con:settings/><con:testStep type="request" name="addPerfil"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LojixServiceSoapBinding</con:interface><con:operation>adicionaPerfil</con:operation><con:request name="addPerfil"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:adicionaPerfil>
+         <arg0>
+            <descricao>Perfil ADMIN</descricao>
+            <nome>${#Project#perfil.name}</nome>
+            <permissao>ADMIN</permissao>
+            <prioridade>ALTA</prioridade>
+            <status>true</status>
+            <usuarioCorrente>soapui</usuarioCorrente>
+         </arg0>
+      </loj:adicionaPerfil>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Simple Contains" name="checaRetornoTrue"><con:configuration><token>&lt;return>true&lt;/return></token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="validaPerfil"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LojixServiceSoapBinding</con:interface><con:operation>recuperaTodosPerfis</con:operation><con:request name="validaPerfil"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:recuperaTodosPerfis/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Simple Contains" name="checaPerfilNome"><con:configuration><token>&lt;nome>${#Project#perfil.name}&lt;/nome></token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" name="checaUserCorrente"><con:configuration><token>&lt;usuarioCorrente>soapui&lt;/usuarioCorrente>
+</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="addUser"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LojixServiceSoapBinding</con:interface><con:operation>adicionaUsuario</con:operation><con:request name="addUser"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://RAFA-NOTE:8080/lojix-ejb-0.0.1-SNAPSHOT/LojixService/LojixService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loj="http://lojix.zetex.com.br">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loj:adicionaUsuario/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>perfil.name</con:name><con:value>ADMIN</con:value></con:property></con:properties><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
