@@ -2,11 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<artifactId>lojix-parent</artifactId>
+		<groupId>br.com.zetex</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
 	<groupId>br.com.zetex</groupId>
 	<artifactId>lojix</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Lojix Application</name>
+	
+	<name>Project Lojix Core</name>
 
 	<modules>
 		<module>lojix-ejb</module>
@@ -40,14 +48,6 @@
 			<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any 
 				dependencies from org.jboss.spec will have their version defined by this 
 				BOM -->
-			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this 
-				as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version 
-				2.0.0.Beta1 which is the latest release of the stack. You can actually use 
-				this stack with any version of JBoss AS that implements Java EE 6, not just 
-				JBoss AS 7! -->
 			<dependency>
 				<groupId>org.jboss.spec</groupId>
 				<artifactId>jboss-javaee-web-6.0</artifactId>
